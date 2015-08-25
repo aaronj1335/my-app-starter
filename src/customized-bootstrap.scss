@@ -1,0 +1,68 @@
+// this allows us to only import the subsections of bootstrap that we want and
+// customize the look and feel by overriding variables.
+//
+// this app will rely on an implicit dependency on bootstrap, since bootstrap
+// files can't be treated as individual modules.
+//
+// individual components can import their own sass files which will ultimately
+// get concatenated. those files should only import `variables` and `mixins`
+// from bootstrap (nothing that actually emits css).
+
+////////////////////////////////////////////////////////////////////////////////
+//
+// copied directly from node_modules/bootstrap/scss/bootstrap.scss, and then
+// modified paths and commented out un-needed files
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Core variables and mixins
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+// // Reset and dependencies
+@import "node_modules/bootstrap/scss/normalize";
+@import "node_modules/bootstrap/scss/print";
+
+// Core CSS
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/images";
+@import "node_modules/bootstrap/scss/code";
+@import "node_modules/bootstrap/scss/grid";
+@import "node_modules/bootstrap/scss/tables";
+@import "node_modules/bootstrap/scss/forms";
+@import "node_modules/bootstrap/scss/buttons";
+
+// // Components
+/* @import "node_modules/bootstrap/scss/animation"; */
+@import "node_modules/bootstrap/scss/dropdown";
+@import "node_modules/bootstrap/scss/button-group";
+@import "node_modules/bootstrap/scss/input-group";
+/* @import "node_modules/bootstrap/scss/custom-forms"; */
+@import "node_modules/bootstrap/scss/nav";
+@import "node_modules/bootstrap/scss/navbar";
+/* @import "node_modules/bootstrap/scss/card"; */
+/* @import "node_modules/bootstrap/scss/breadcrumb"; */
+/* @import "node_modules/bootstrap/scss/pagination"; */
+/* @import "node_modules/bootstrap/scss/pager"; */
+@import "node_modules/bootstrap/scss/labels";
+/* @import "node_modules/bootstrap/scss/jumbotron"; */
+/* @import "node_modules/bootstrap/scss/alert"; */
+/* @import "node_modules/bootstrap/scss/progress"; */
+@import "node_modules/bootstrap/scss/media";
+/* @import "node_modules/bootstrap/scss/list-group"; */
+/* @import "node_modules/bootstrap/scss/responsive-embed"; */
+@import "node_modules/bootstrap/scss/close";
+
+// Components w/ JavaScript
+/* @import "node_modules/bootstrap/scss/modal"; */
+/* @import "node_modules/bootstrap/scss/tooltip"; */
+/* @import "node_modules/bootstrap/scss/popover"; */
+/* @import "node_modules/bootstrap/scss/carousel"; */
+
+// Utility classes
+@import "node_modules/bootstrap/scss/utilities";
+/* @import "node_modules/bootstrap/scss/utilities-spacing"; */
+/* @import "node_modules/bootstrap/scss/utilities-responsive"; */
+
+////////////////////////////////////////////////////////////////////////////////

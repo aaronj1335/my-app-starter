@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+
+    <% assets.css.map(function(href) { %>
+      <link rel=stylesheet href="<%= href %>" />
+    <% }) %>
+  </head>
+
+  <body>
+    <%= componentHtml %>
+
+    <% assets.js.map(function(src) { %>
+      <script src="<%= src %>"></script>
+    <% }) %>
+  </body>
+</html>

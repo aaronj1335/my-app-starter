@@ -1,0 +1,40 @@
+{
+  "name": "my-app-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "( export NODE_ENV=production && node_modules/.bin/babel-node node_modules/.bin/webpack )",
+    "build-stats": "npm run clean; rm /tmp/built*gz; npm run build && gzip -c dist/*.js > /tmp/built.js.gz && gzip -c dist/*.css > /tmp/built.css.gz && ls -lh /tmp/built*gz",
+    "dev": "node_modules/.bin/babel-node bin/dev.js",
+    "clean": "rm -rf dist"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer-core": "^5.2.1",
+    "babel": "^5.8.21",
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "bootstrap": "twbs/bootstrap#v4-dev",
+    "connect": "^3.4.0",
+    "css-loader": "^0.16.0",
+    "envify": "^3.4.0",
+    "eval": "^0.1.1",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "flux": "^2.1.1",
+    "html-webpack-plugin": "^1.6.1",
+    "lodash": "^3.10.1",
+    "node-sass": "^3.2.0",
+    "postcss-color-rebeccapurple": "^1.2.0",
+    "postcss-loader": "^0.6.0",
+    "proxy-middleware": "^0.13.1",
+    "react": "^0.13.3",
+    "sass-loader": "^2.0.1",
+    "style-loader": "^0.12.3",
+    "transform-loader": "^0.2.2",
+    "webpack": "^1.11.0",
+    "webpack-dev-middleware": "^1.2.0"
+  }
+}
