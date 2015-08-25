@@ -2,30 +2,31 @@ import {Component, DOM} from 'react';
 
 import isBrowser from './../is-browser';
 
-import auth from './../data/auth/store';
+import authStore from './../data/auth/store';
+import authActions from './../data/auth/actions';
 
 const {div} = DOM;
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {isLoggedIn: auth().isLoggedIn()};
+    this.state = {isLoggedIn: authStore().isLoggedIn()};
     this.onAuthChange = this.onAuthChange.bind(this);
   }
 
   componentDidMount() {
-    if (auth().isLoggedIn() == null)
-      auth().checkIsLoggedIn();
+    if (authStore().isLoggedIn() == null)
+      authActions().checkIsLoggedIn();
 
-    auth().on('change', this.onAuthChange);
+    authStore().on('change', this.onAuthChange);
   }
 
   componentWillUnmount() {
-    auth().removeListener('change', this.onAuthChange);
+    authStore().removeListener('change', this.onAuthChange);
   }
 
   onAuthChange() {
-    this.setState({isLoggedIn: auth().isLoggedIn()});
+    this.setState({isLoggedIn: authStore().isLoggedIn()});
   }
 
   render() {
