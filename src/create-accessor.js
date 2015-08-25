@@ -42,7 +42,7 @@ export default function createAccessor(Class) {
 
   if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined'
       && Class.name) {
-    var name = Class.name[0].toLowerCase() + Class.name.slice(1);
+    var name = Class.name[0].toLowerCase() + Class.name.slice(1) + '_';
 
     if (!window[name])
       window[name] = accessor;

@@ -1,13 +1,13 @@
-import {Component, DOM} from 'react';
+import {Component, DOM, createFactory} from 'react';
 
 import isBrowser from './../is-browser';
-
 import authStore from './../data/auth/store';
 import authActions from './../data/auth/actions';
+import Login from './login';
 
 const {div} = DOM;
 
-export default class App extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {isLoggedIn: authStore().isLoggedIn()};
@@ -36,6 +36,8 @@ export default class App extends Component {
     if (this.state.isLoggedIn)
       return div({}, 'content');
     else
-      return div({}, 'login form');
+      return Login();
   }
 };
+
+export default createFactory(App);

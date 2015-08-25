@@ -11,6 +11,9 @@ const isDev = process.env.NODE_ENV !== 'production';
 import {readFile} from 'fs';
 
 module.exports = {
+  // without this, failures to compile es6 will get silently squashed and
+  // reported as a missing module
+  /* bail: true, */
 
   // we're hashing the output filename to enable long-term HTTP caching in
   // production. the HTMLWebpackPlugin still needs to be able to reference this
@@ -99,10 +102,6 @@ module.exports = {
         });
       }
     } : null
-  ].filter(p => !!p),
-
-  // without this, failures to compile es6 will get silently squashed and
-  // reported as a missing module
-  bail: true
+  ].filter(p => !!p)
 };
 
