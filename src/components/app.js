@@ -2,7 +2,7 @@ import {Component, DOM} from 'react';
 
 import isBrowser from './../is-browser';
 
-import auth from './../stores/auth';
+import auth from './../data/auth/store';
 
 const {div} = DOM;
 

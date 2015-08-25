@@ -1,7 +1,18 @@
 import {EventEmitter} from 'events';
+
+import dispatcher from './../dispatcher';
+import createAccessor from './../create-accessor';
 import isBrowser from './../is-browser';
 
 class AuthStore extends EventEmitter {
+  constructor() {
+    this.idx = dispatcher().register(this._dispatch.bind(this));
+  }
+
+  _dispatch(payload) {
+    if (payload.
+  }
+
   isLoggedIn() {
     return this._isLoggedIn;
   }
@@ -27,18 +38,4 @@ class AuthStore extends EventEmitter {
   }
 }
 
-let _instance;
-
-function accessor() {
-  if (!_instance)
-    _instance = new AuthStore();
-
-  return _instance;
-};
-
-accessor.AuthStore = AuthStore;
-
-if (process.env.NODE_ENV !== 'production' && isBrowser())
-  window.auth = accessor;
-
-export default accessor;
+export default createAccessor(AuthStore);
