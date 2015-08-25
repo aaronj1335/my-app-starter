@@ -33,15 +33,18 @@ class AuthStore extends EventEmitter {
   _login(user, pass) {
     if (!this._pendingLogin) {
       this._pendingLogin = fetch('/login.json', {
+          method: 'POST',
           body: encodeURIComponent(user) + '&' + encodeURIComponent(pass)
         })
         .then(response => response.json())
         .then(result => {
           this._loginResult = result;
+          this._pendingLogin = null;
           this.emit('change');
         })
         .catch(e => {
           this._loginError = e;
+          this._pendingLogin = null;
           this.emit('change');
         });
 
