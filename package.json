@@ -33,6 +33,7 @@
     "proxy-middleware": "^0.13.1",
     "react": "^0.13.3",
     "sass-loader": "^2.0.1",
+    "source-map-loader": "^0.1.5",
     "style-loader": "^0.12.3",
     "transform-loader": "^0.2.2",
     "webpack": "^1.11.0",

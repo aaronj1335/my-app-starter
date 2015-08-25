@@ -44,14 +44,20 @@ module.exports = {
         loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
       },
 
-      {
+      isDev && {
+        test: /\.js$/,
+        loader: 'source-map!babel-loader',
+        exclude: /node_modules/
+      },
+
+      !isDev && {
         test: /\.js$/,
         loader: 'transform/cacheable?envify!babel-loader',
         exclude: /node_modules/
       },
 
-      {test: /node_modules.*\.js$/, loader: 'transform/cacheable?envify'}
-    ]
+      !isDev && {test: /node_modules.*\.js$/, loader: 'transform/cacheable?envify'}
+    ].filter(l => !!l)
   },
 
   postcss: [
@@ -102,6 +108,8 @@ module.exports = {
         });
       }
     } : null
-  ].filter(p => !!p)
+  ].filter(p => !!p),
+
+  devtool: isDev? 'source-map' : null
 };
 

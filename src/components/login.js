@@ -12,9 +12,9 @@ class Login extends Component {
   }
 
   onSubmit(event) {
-  console.log('in therrrrrr
     const {target: {email: {value: eml}, password: {value: pass}}} = event;
     event.preventDefault();
+    console.log('in there');
     authActions().login(eml, pass);
   }
 
