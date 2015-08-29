@@ -1,20 +1,47 @@
-import store from './store';
-import {LOGIN, CHECK} from './constants';
-import createAccessor from './../../create-accessor';
-import dispatcher from './../dispatcher';
+import store from './../store';
 
-class AuthActions {
-  constructor() {
-    this.store = store();
+export default {
+  login: function(username, password) {
+    var state = store().getState();
+
+    if (state.auth.loginRequest)
+      return state.auth.loginRequest;
+
+    var loginRequest = fetch('/login.json')
+      .then(response => response.json())
+      .then(result => {
+        store().dispatch({type: 'AUTH_LOGIN_SUCCESS'});
+        return result;
+      })
+      .catch(error => {
+        store().dispatch({type: 'AUTH_LOGIN_FAILURE', error: error});
+        return error;
+      });
+
+    store().dispatch({type: 'AUTH_LOGIN_REQUEST', loginRequest});
+
+    return loginRequest;
+  },
+
+  checkIfLoggedIn: function() {
+    var state = store().getState();
+
+    if (state.auth.isLoggedIn != null)
+      return Promise.resolve(state.auth.isLoggedIn);
+
+    var checkRequest = fetch('/is-logged-in.json')
+      .then(response => response.json())
+      .then(isLoggedIn => {
+        store().dispatch({type: 'AUTH_CHECK_SUCCESS', isLoggedIn});
+        return isLoggedIn;
+      })
+      .catch(error => {
+        store().dispatch({type: 'AUTH_CHECK_FAILURE', error: error});
+        return error;
+      })
+
+    store().dispatch({type: 'AUTH_CHECK_REQUEST', checkRequest});
+
+    return checkRequest;
   }
-
-  login(user, pass) {
-    dispatcher().dispatch({action: {type: LOGIN, user, pass}})
-  }
-
-  checkIsLoggedIn() {
-    dispatcher().dispatch({action: {type: CHECK}});
-  }
-}
-
-export default createAccessor(AuthActions);
+};

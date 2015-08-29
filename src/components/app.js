@@ -1,8 +1,8 @@
 import {Component, DOM, createFactory} from 'react';
 
 import isBrowser from './../is-browser';
-import authStore from './../data/auth/store';
-import authActions from './../data/auth/actions';
+import store from './../data/store';
+import auth from './../data/auth/actions';
 import Login from './login';
 
 const {div} = DOM;
@@ -10,23 +10,27 @@ const {div} = DOM;
 class App extends Component {
   constructor() {
     super();
-    this.state = {isLoggedIn: authStore().isLoggedIn()};
+    this.state = {isLoggedIn: store().getState().auth.isLoggedIn};
     this.onAuthChange = this.onAuthChange.bind(this);
   }
 
   componentDidMount() {
-    if (authStore().isLoggedIn() == null)
-      authActions().checkIsLoggedIn();
+    if (store().getState().auth.isLoggedIn == null)
+      auth.checkIfLoggedIn();
 
-    authStore().on('change', this.onAuthChange);
+    this._unsubscribe = store().subscribe(this.onAuthChange);
   }
 
   componentWillUnmount() {
-    authStore().removeListener('change', this.onAuthChange);
+    this._unsubscribe();
+    delete this._unsubscribe;
   }
 
   onAuthChange() {
-    this.setState({isLoggedIn: authStore().isLoggedIn()});
+    const isLoggedIn = store().getState().auth.isLoggedIn;
+
+    if (isLoggedIn !== this.state.isLoggedIn)
+      this.setState({isLoggedIn});
   }
 
   render() {

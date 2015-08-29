@@ -1,7 +1,7 @@
 import {Component, DOM, createFactory} from 'react';
 
-import authStore from './../data/auth/store';
-import authActions from './../data/auth/actions';
+import store from './../data/store';
+import {login} from './../data/auth/actions';
 
 const {form, fieldset, input, button, div} = DOM;
 
@@ -14,29 +14,33 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    authStore().on('change', this.onAuthStoreChange);
+    this._unsubscribe = store().subscribe(this.onAuthStoreChange);
   }
 
   componentWillUnmount() {
-    authStore().removeListener('change', this.onAuthStoreChange);
+    this._unsubscribe();
+    delete this._unsubscribe;
   }
 
   getStateFromAuthStore() {
+    const authState = store().getState().auth;
+
     return {
-      error: authStore().loginError(),
-      pending: !!authStore().pendingLogin()
+      error: authState.error,
+      pending: !!authState.loginRequest
     };
   }
 
   onAuthStoreChange() {
-    this.setState(this.getStateFromAuthStore());
+    // https://reactiflux.slack.com/archives/redux/p1440879642004255
+    if (this._unsubscribe)
+      this.setState(this.getStateFromAuthStore());
   }
 
   onSubmit(event) {
     const {target: {email: {value: eml}, password: {value: pass}}} = event;
     event.preventDefault();
-    console.log('in there');
-    authActions().login(eml, pass);
+    login(eml, pass);
   }
 
   render() {
