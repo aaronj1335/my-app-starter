@@ -33,6 +33,9 @@ class Login extends Component {
 
   onAuthStoreChange() {
     // https://reactiflux.slack.com/archives/redux/p1440879642004255
+    // for some reason i couldn't repro this in jsbin:
+    // http://jsbin.com/qecimi/1/edit?js,output
+    // it seems the App's render method runs before this callback runs in redux
     if (this._unsubscribe)
       this.setState(this.getStateFromAuthStore());
   }
