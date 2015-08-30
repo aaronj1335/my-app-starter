@@ -14,6 +14,11 @@ function accessor() {
   return _instance;
 };
 
-accessor.reset = () => _instance = null;
+accessor.reset = () => {
+  _instance = null;
+
+  if (process.env.NODE_ENV !== 'production' && typeof window !== 'undefined')
+    window.store = null;
+};
 
 export default accessor;

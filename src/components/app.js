@@ -1,13 +1,19 @@
-import {Component, DOM, createFactory} from 'react';
+import {Component, DOM} from 'react';
+import {Router, Route, Link} from './../router';
 
 import isBrowser from './../is-browser';
 import store from './../data/store';
 import auth from './../data/auth/actions';
 import Login from './login';
+import Container from './container';
+import Sportsballs from './sportsballs';
+
+if (isBrowser())
+  var history = require('react-router/lib/BrowserHistory').history;
 
 const {div} = DOM;
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {isLoggedIn: store().getState().auth.isLoggedIn};
@@ -38,10 +44,10 @@ class App extends Component {
       return div({}, 'loading...');
 
     if (this.state.isLoggedIn)
-      return div({}, 'content');
+      return Router({history},
+        Route({path: '/', component: Container},
+          Route({path: 'sportsballs', component: Sportsballs})));
     else
       return Login();
   }
 };
-
-export default createFactory(App);
