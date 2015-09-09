@@ -3,7 +3,7 @@ import {Component, DOM, createFactory} from 'react';
 import store from './../data/store';
 import {login} from './../data/auth/actions';
 
-const {form, fieldset, input, button, div} = DOM;
+const {form, fieldset, input, button, div, p} = DOM;
 
 class Login extends Component {
   constructor() {
@@ -47,29 +47,28 @@ class Login extends Component {
   }
 
   render() {
-    return form({onSubmit: this.onSubmit, ref: 'form'},
-      fieldset({className: 'form-group'},
-        input({
-          type: 'email',
-          name: 'email',
-          className: 'form-control',
-          placeholder: 'Email',
-          autoFocus: true,
-          disabled: this.state.pending
-        })),
-      fieldset({className: 'form-group'},
-        input({
-          type: 'password',
-          name: 'password',
-          className: 'form-control',
-          placeholder: 'Password',
-          disabled: this.state.pending
-        })),
+    return form({onSubmit: this.onSubmit},
+      p({}, 'Please log in'),
+      input({
+        type: 'email',
+        name: 'email',
+        className: 'block col-12 mb2 field',
+        placeholder: 'Email',
+        autoFocus: true,
+        disabled: this.state.pending
+      }),
+      input({
+        type: 'password',
+        name: 'password',
+        className: 'block col-12 mb2 field',
+        placeholder: 'Password',
+        disabled: this.state.pending
+      }),
       button({
         type: 'submit',
-        className: 'btn btn-primary form-group',
+        className: 'btn btn-primary right',
         disabled: this.state.pending
-      }, 'Submit'),
+      }, 'Log In'),
       this.state.error && div({
         className: 'form-group alert alert-danger',
         role: 'alert',

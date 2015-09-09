@@ -1,6 +1,6 @@
 import {render, createElement} from 'react';
 
-import './customized-bootstrap';
+import './style';
 import isBrowser from './is-browser';
 import App from './components/app';
 

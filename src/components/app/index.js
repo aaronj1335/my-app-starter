@@ -1,12 +1,14 @@
 import {Component, DOM} from 'react';
-import {Router, Route, Link} from './../router';
 
-import isBrowser from './../is-browser';
-import store from './../data/store';
-import auth from './../data/auth/actions';
-import Login from './login';
-import Container from './container';
-import Sportsballs from './sportsballs';
+import {Router, Route, Link} from './../../router';
+import isBrowser from './../../is-browser';
+import store from './../../data/store';
+import auth from './../../data/auth/actions';
+import Login from './../login';
+import LoadingIndicator from './../loading-indicator';
+import Container from './../container';
+import Sportsballs from './../sportsballs';
+import './style';
 
 if (isBrowser())
   var history = require('history/lib/createBrowserHistory')();
@@ -41,13 +43,14 @@ export default class App extends Component {
 
   render() {
     if (!isBrowser() || this.state.isLoggedIn == null)
-      return div({}, 'loading...');
+      return LoadingIndicator();
 
     if (this.state.isLoggedIn)
       return Router({history},
         Route({path: '/', component: Container},
           Route({path: 'sportsballs', component: Sportsballs})));
     else
-      return Login();
+      return div({className: 'login-container container border-box px2 py4 col-12 sm-col-6'},
+        Login());
   }
 };
