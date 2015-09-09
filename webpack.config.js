@@ -5,6 +5,7 @@ import {template} from 'lodash';
 import webpack from 'webpack';
 
 import html from './lib/html';
+import css from './lib/css';
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -40,8 +41,9 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style',
+          'css?modules&localIdentName=[local]!postcss')
       },
 
       isDev && {
@@ -66,18 +68,23 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['', '.js', '.scss']
+    extensions: ['', '.js', '.css'],
+    packageMains: ['style', 'main']
   },
 
   plugins: [
     new ExtractTextPlugin(isDev? 'style.css' : '[hash].css', {allChunks: true}),
+
     isDev? null : new webpack.optimize.UglifyJsPlugin({minimize: true}),
+
     html({
       templateCompiler: template,
       templateFileName: 'src/index.html',
       entry: 'main',
       outputFileName: 'index.html'
     }),
+
+    css,
 
     // TODO: remove this when we've got a real api
     isDev? {
