@@ -9,7 +9,7 @@ import Container from './container';
 import Sportsballs from './sportsballs';
 
 if (isBrowser())
-  var history = require('react-router/lib/BrowserHistory').history;
+  var history = require('history/lib/createBrowserHistory')();
 
 const {div} = DOM;
 
