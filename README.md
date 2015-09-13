@@ -42,8 +42,8 @@ also make server-side rerendering a bit easier.
 
 ## [csp][]
 
-the dev server uses [csp][]! this prevents certain types of source maps, but it
-allows you to test your policy in development.
+the dev server uses [csp][]! no not [that csp][]. this prevents certain types
+of source maps, but it allows you to test your policy in development.
 
 ## optimized production build
 
@@ -99,3 +99,5 @@ class names as JS modules.
 [css-modules]: https://github.com/css-modules/css-modules
 [css-loader]: https://github.com/webpack/css-loader
 [roll your own plugin to render `index.html`]: /aaronj1335/my-app-starter/blob/master/lib/html.js
+[csp]: https://developer.mozilla.org/en-US/docs/Web/Security/CSP
+[that csp]: http://swannodette.github.io/2013/07/12/communicating-sequential-processes/
