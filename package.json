@@ -1,7 +1,7 @@
 {
   "name": "my-app-starter",
   "version": "1.0.0",
-  "description": "",
+  "description": "react, redux, webpack, and basscss app starter template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,11 @@
     "dev": "node_modules/.bin/babel-node bin/dev.js",
     "clean": "rm -rf dist"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aaronj1335/my-app-starter.git"
+  },
+  "author": "Aaron Stacy",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.0.2",
