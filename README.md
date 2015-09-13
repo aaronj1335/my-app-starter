@@ -98,9 +98,8 @@ class names as JS modules.
 [react-router]: http://rackt.github.io/react-router/
 [basscss]: http://www.basscss.com
 [a singleton]: /aaronj1335/my-app-starter/blob/master/src/data/store.js
-[csp][]: /aaronj1335/my-app-starter/blob/master/config.js#L9
+[csp]: /aaronj1335/my-app-starter/blob/master/config.js#L9
 [css-modules]: https://github.com/css-modules/css-modules
 [css-loader]: https://github.com/webpack/css-loader
 [roll your own plugin to render `index.html`]: /aaronj1335/my-app-starter/blob/master/lib/html.js
-[csp]: https://developer.mozilla.org/en-US/docs/Web/Security/CSP
 [that csp]: http://swannodette.github.io/2013/07/12/communicating-sequential-processes/
