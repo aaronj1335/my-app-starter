@@ -8,6 +8,7 @@ import customProperties from 'postcss-custom-properties';
 import customMedia from 'postcss-custom-media';
 import colorFunction from 'postcss-color-function';
 import autoprefixer from 'autoprefixer';
+import webpackPostcssTools from 'webpack-postcss-tools';
 
 import html from './lib/html';
 import css from './lib/css';
@@ -48,7 +49,7 @@ module.exports = {
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style',
-          'css?modules&localIdentName=[local]')
+          'css?importLoaders=1!postcss-loader')
       },
 
       isDev && {
@@ -66,6 +67,12 @@ module.exports = {
       !isDev && {test: /node_modules.*\.js$/, loader: 'transform/cacheable?envify'}
     ].filter(l => !!l)
   },
+
+  // using css-modules to resolve css @import's results in extra code for the
+  // exported class names, which we never use.
+  postcss: [
+    webpackPostcssTools.prependTildesToImports
+  ],
 
   resolve: {
     extensions: ['', '.js', '.css'],

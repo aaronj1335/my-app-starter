@@ -83,6 +83,12 @@ other plugins are available:
 and they're much better written than mine, but i don't think the first lets me
 render react components, and the second doesn't seem to handle css chunks.
 
+## &hellip;not use css-modules to resolve css `@import`'s?
+
+this repo takes a more traditional approach to css which is less modules and
+has less overhead than css modules. as a result we can avoid exporting the css
+class names as JS modules.
+
 [react]: http://facebook.github.io/react/
 [redux]: http://rackt.github.io/redux/
 [react-router]: http://rackt.github.io/react-router/

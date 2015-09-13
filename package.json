@@ -43,6 +43,7 @@
     "transform-loader": "^0.2.2",
     "webpack": "^1.11.0",
     "webpack-core": "^0.6.6",
-    "webpack-dev-middleware": "^1.2.0"
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-postcss-tools": "^1.1.1"
   }
 }
