@@ -21,7 +21,7 @@ months anyway.
 
 # what's in the box
 
-## [react][], [redux][], [react-router][], and [basscss][]
+## [react][], [redux][], [webpack][], [react-router][], and [basscss][]
 
 i'm using redux's `createStore` and reducers approach to managing page state,
 but i'm not using its bindings to react, instead i'm just using [a singleton][]
@@ -91,6 +91,7 @@ class names as JS modules.
 
 [react]: http://facebook.github.io/react/
 [redux]: http://rackt.github.io/redux/
+[webpack]: http://webpack.github.io
 [react-router]: http://rackt.github.io/react-router/
 [basscss]: http://www.basscss.com
 [a singleton]: /aaronj1335/my-app-starter/blob/master/src/data/store.js
