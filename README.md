@@ -42,8 +42,11 @@ also make server-side rerendering a bit easier.
 
 ## [csp][]
 
-the dev server uses [csp][]! no not [that csp][]. this prevents certain types
-of source maps, but it allows you to test your policy in development.
+the dev server uses [csp][]! no not [that csp][].
+
+the current settings prevent certain types of source maps, inline scripts, and
+usage of the `style` attribute, but this allows you to test your policy in
+development, which seems important.
 
 ## optimized production build
 
