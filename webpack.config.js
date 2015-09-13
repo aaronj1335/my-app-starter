@@ -3,6 +3,11 @@ import {join} from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import {template} from 'lodash';
 import webpack from 'webpack';
+import postcss from 'postcss';
+import customProperties from 'postcss-custom-properties';
+import customMedia from 'postcss-custom-media';
+import colorFunction from 'postcss-color-function';
+import autoprefixer from 'autoprefixer';
 
 import html from './lib/html';
 import css from './lib/css';
@@ -43,7 +48,7 @@ module.exports = {
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('style',
-          'css?modules&localIdentName=[local]!postcss')
+          'css?modules&localIdentName=[local]')
       },
 
       isDev && {
@@ -62,11 +67,6 @@ module.exports = {
     ].filter(l => !!l)
   },
 
-  postcss: [
-    require('autoprefixer-core'),
-    require('postcss-color-rebeccapurple')
-  ],
-
   resolve: {
     extensions: ['', '.js', '.css'],
     packageMains: ['style', 'main']
@@ -84,7 +84,14 @@ module.exports = {
       outputFileName: 'index.html'
     }),
 
-    css,
+    // postcss-loader isn't applied to basscss modules wtf
+    css(source => postcss()
+      .use(customProperties())
+      .use(customMedia())
+      .use(colorFunction())
+      .use(autoprefixer({browsers: 'last 2 versions'}))
+      .process(source)
+      .css),
 
     // TODO: remove this when we've got a real api
     isDev? {

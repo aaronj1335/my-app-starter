@@ -1,3 +1,5 @@
+/* cribbed from basscss/lib/basscss.css */
+
 @import 'basscss/node_modules/basscss-base-reset';
 @import 'basscss/node_modules/basscss-base-forms';
 @import 'basscss/node_modules/basscss-base-tables';
@@ -16,11 +18,9 @@
 @import 'basscss/node_modules/basscss-positions';
 @import 'basscss/node_modules/basscss-responsive-states';
 @import 'basscss/node_modules/basscss-grid';
-/* @import 'basscss/node_modules/flex-object'; */
+/* @import 'basscss/node_modules/flex-object'; excluding b/c we can't polyfill */
 @import 'basscss/node_modules/basscss-borders';
 @import 'basscss/node_modules/basscss-colors';
 @import 'basscss/node_modules/basscss-background-colors';
 
-@import 'basscss/node_modules/basscss-defaults';
-
-
+@import './look-and-feel';
