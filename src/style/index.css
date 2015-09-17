@@ -23,4 +23,4 @@
 @import 'basscss/node_modules/basscss-colors';
 @import 'basscss/node_modules/basscss-background-colors';
 
-@import './look-and-feel';
+@import './defaults';

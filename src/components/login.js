@@ -2,6 +2,7 @@ import {Component, DOM, createFactory} from 'react';
 
 import store from './../data/store';
 import {login} from './../data/auth/actions';
+import './../style/mln2';
 
 const {form, fieldset, input, button, div, p} = DOM;
 
@@ -46,6 +47,24 @@ class Login extends Component {
     login(eml, pass);
   }
 
+  renderErrorPlaceholder() {
+    return div({className: 'p1 mb2'}, '\u00a0');
+  }
+
+  renderError() {
+    const {state: {error: {message, response: {status}}}} = this;
+
+    if (status === 403)
+      var msg = 'The e-mail or password is incorrect.';
+    else
+      var msg = message;
+
+    return div({
+        className: 'p1 mb2 white bg-red rounded',
+        role: 'alert',
+      }, msg);
+  }
+
   render() {
     return form({onSubmit: this.onSubmit},
       p({}, 'Please log in'),
@@ -57,22 +76,21 @@ class Login extends Component {
         autoFocus: true,
         disabled: this.state.pending
       }),
-      input({
-        type: 'password',
-        name: 'password',
-        className: 'block col-12 mb2 field',
-        placeholder: 'Password',
-        disabled: this.state.pending
-      }),
-      button({
-        type: 'submit',
-        className: 'btn btn-primary right',
-        disabled: this.state.pending
-      }, 'Log In'),
-      this.state.error && div({
-        className: 'form-group alert alert-danger',
-        role: 'alert',
-      }, this.state.error.message));
+      div({className: 'clearfix mln2 mb2'},
+        div({className: 'col col-9 px2'},
+          input({
+            type: 'password',
+            name: 'password',
+            className: 'block col-12 field',
+            placeholder: 'Password',
+            disabled: this.state.pending
+          })),
+        button({
+          type: 'submit',
+          className: 'col col-3 btn btn-primary',
+          disabled: this.state.pending
+        }, 'Log In')),
+      this.state.error && this.renderError());
   }
 }
 

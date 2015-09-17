@@ -1,4 +1,5 @@
 import store from './../store';
+import apiCall from './../../api/call';
 
 export default {
   login: function(username, password) {
@@ -7,8 +8,10 @@ export default {
     if (state.auth.loginRequest)
       return state.auth.loginRequest;
 
-    var loginRequest = fetch('/login.json')
-      .then(response => response.json())
+    var loginRequest = apiCall('/login.json', {
+        method: 'POST',
+        body: JSON.stringify({email: username, password})
+      })
       .then(result => {
         store().dispatch({type: 'AUTH_LOGIN_SUCCESS'});
         return result;

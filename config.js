@@ -17,7 +17,7 @@ export default {
         form-action      none;
         frame-ancestors: none;
         object-src:      none;
-        `,
+        `.replace(/\s+/g, ' '),
 
   api: {
     // when the browser makes API requests, those should be rooted at the
